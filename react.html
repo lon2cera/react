@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div id="root"></div>
+  </div>
+  <!-- <h2 id="title">this is heading title</h2>
+  <div>
+    <button id="eventBtn">Click!</button>
+    <div style="background-color: red;">Box</div>
+  </div> -->
+</body>
+<script type="text/babel">
+  // 형식
+  // React.createElement('태그명', {속성:값}, '내용');
+  // 속성 파라미터, 내용은 옵션 (생략 가능)
+  
+  // ReactDom
+  // 형식
+  // ReactDom.render(적용할 리액트 요소, 적용될 영역);
+  const root=document.getElementById('root');
+  
+  const h2=React.createElement(
+    'h2',
+    {id:"title"},
+    "this is heading title"
+  );
+  
+  const eventBtn=React.createElement(
+    'button', 
+    {id:'eventBtn',onClick:()=>alert('eventBtn Clicked')}, //id: 'eventBtn', alert('eventBtn Clicked') //onClick
+    "Click!"
+  );
+  // const eventBtn=(
+  //   <button id="eventBtn" onClick={()=> alert('eventBtn Clicked')}>Click!!</button>
+  // )
+
+  const styleDiv=React.createElement(
+    'div', 
+    {
+      style:{
+        backgroundColor: 'red'
+      }
+    }, 
+    "box");
+  const div=React.createElement('div', null, [eventBtn,styleDiv]);
+
+  ReactDOM.render([h2, div], root);
+
+
+
+  
+</script>
+</html>

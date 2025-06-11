@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h6>Q. 1씩 증가 혹은 감소하는 버튼을 만들고, 버튼 클릭 시 현재 값을 화면에 출력하시오</h6>
+
+  <div>
+    <p>현재 값 : <span id="value">0</span></p>
+  </div>
+  <div>
+    <button id="plusBtn">+1</button>
+    <button id="minusBtn">-1</button>
+  </div>
+</body>
+<script>
+  // const plus=document.querySelector('#plusBtn');
+  // const minus=document.querySelector('#minusBtn');
+  const valueElement=document.querySelector('#value');
+
+  document.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      let idType=btn.getAttribute('id');
+      if (idType==='plusBtn') {
+        let value = Number(valueElement.innerText);
+        valueElement.innerText = value + 1;
+      }else if(idType==='minusBtn'){
+        let value = Number(valueElement.innerText);
+        valueElement.innerText = value - 1;
+
+      }
+    })
+  })
+
+</script>
+</html>
