@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 // import data from '../util/mock/data';
 import Detail from '../components/detail/Detail';
 import axios from 'axios';
+import Cart from '../components/cart/Cart';
 
 
 const Container = styled.div`
@@ -75,6 +76,7 @@ const Display = () => {
         <Routes>
           <Route path='/' element={<Main data={products}/>}/>
           <Route path='/detail/:pId' element={<Detail data={products}/>}/>
+          <Route path='/cart' element={<Cart/>}/>
         </Routes>
       </Body>
     </Container>

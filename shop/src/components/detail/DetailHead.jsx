@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import formatKoreanCurrency from '../../util/display/display';
 import DescriptionList from './DescriptionList';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../../actions/cartAction';
+import { useNavigate } from 'react-router-dom';
 
 const BR = styled.div`
   width: 100%;
@@ -86,6 +89,30 @@ const BuyButton = styled.button`
 // `;
 
 const DetailHead = ({data}) => {
+
+  const cart=useSelector(state=>state.cart);
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+
+  const handleCartAddItem=()=>{
+    const obj={
+      id: data.id,
+      productName: data.title,
+      price: data.price,
+      count:1
+    }
+
+    // 1. 메세지 없이 개수 증가
+    // 2. 장바구니에 이미 담겨져있다는 메세지를 알리고, 개수 증가
+    // 3. 장바구니에 이미 담겨져있다는 메세지를 알리고, 담지X
+
+    dispatch(addItem(obj))
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('장바구니에 추가하였습니다. 장바구니로 이동하시겠습니까?')) {
+      navigate('/cart');
+    }
+  }
+
   return (
     <DetailHeadArea>
       <DetailMainImg image={data.main}/>
@@ -98,7 +125,7 @@ const DetailHead = ({data}) => {
           <DescriptionList contents={{dt:'배송비', dd: '3,000원'}}/>
         </InfoArea>
         <ButtonArea>
-          <CartAddButton>장바구니</CartAddButton>
+          <CartAddButton onClick={handleCartAddItem}>장바구니</CartAddButton>
           {/* <MyButton bg='##999' color='#333' border='gray'>장바구니</MyButton> 버튼 하나로 props를 다르게 던져서 다른 버튼으로 활용 가능*/}
           <BuyButton>바로구매</BuyButton>
         </ButtonArea>
