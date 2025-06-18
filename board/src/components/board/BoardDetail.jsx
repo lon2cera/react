@@ -37,13 +37,14 @@ const BoardDetail = () => {
     nav(`/board/update/${idx}`);
   }
   const handleDelete=async()=>{
-    const resp2=await axios.delete(`/board/${idx}`)
-    const data2=resp2.data
-    if (data2==='success') {
-      alert('게시글이 삭제되었습니다');
-      nav('/board');
-    }else{
-      alert('게시글이 삭제되지 않았습니다');
+    // eslint-disable-next-line no-restricted-globals
+    if(confirm('게시글을 삭제하시겠습니까?')){
+      const resp=await axios.delete(`/board/${idx}`)
+      if (resp.status===200) {
+        nav('/board');
+      }else{
+        alert('게시글이 삭제되지 않았습니다');
+      }
     }
   }
   const moveToBoardList=()=>{
